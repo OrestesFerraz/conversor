@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch&display=swap" rel="stylesheet">
+    <title>conversor JavaScript</title>
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(mylivewallpapers-com-Matrix-EDIT.gif);
+        font-family: 'Chakra Petch', sans-serif;
+        color: rgba(23,255,63,0.74);
+        text-shadow: 4px 4px 2px rgba(7,172,7,0.3);
+        cursor: default;
+    }
+    
+    .main {
+        display: flex;
+        flex-direction:column;
+        align-content: space-around;
+        border-radius: 5vw;
+        background-color: rgba(39, 39, 39, 0.3);
+        backdrop-filter: blur(15px);
+        height: auto;
+        width: 70vw;
+        transition: 1s;
+        box-shadow: 0px 2px 78px -27px rgba(23,255,63,0.74);
+        -webkit-box-shadow: 0px 2px 78px -27px rgba(23,255,63,0.74);
+        -moz-box-shadow: 0px 2px 78px -27px rgba(23,255,63,0.74);
+        text-align: center;
+        border: rgba(23,255,63,0.6) solid 1px;
+    }
+
+    select {
+        padding: 8px; 
+        border: 1px solid #4e4e4e; 
+        border-radius: 360px; 
+        background-color: rgba(1, 141, 36, 0.349);
+        outline: none;
+        width: 200px;
+        text-align: center;
+        font-family: 'Chakra Petch', sans-serif;
+        color: white;
+        font-size: 2vw;
+        color: rgba(23,255,63,0.74);
+        cursor: pointer;
+    }
+
+    select option {
+        background-color: rgba(2, 77, 20, 0.466);
+        border-radius: 5px; 
+        color: black;
+    }
+    h1 {
+        font-size: 3em;
+    }
+    input {
+        width: 35vw;
+        height: 3vw;
+        border-radius: 360px;
+        text-align: center;
+        font-size: 2vw;
+        background-color: #0094253a;
+        color: rgba(23,255,63,0.74);
+        font-family: 'Chakra Petch', sans-serif;
+        cursor: text;
+    }
+
+    #texto {
+        font-size: 3vw;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+
+    button {
+        padding: 8px; 
+        border: 1px solid #4e4e4e; 
+        border-radius: 360px; 
+        background-color: rgba(1, 141, 36, 0.349);
+        outline: none;
+        width: 200px;
+        text-align: center;
+        font-family: 'Chakra Petch', sans-serif;
+        color: white;
+        font-size: 2vw;
+        color: rgba(23,255,63,0.74);
+        cursor: pointer;
+        transition: 0.25s;
+    }
+
+    button:hover {
+        background-color: #3333332f;
+        border: 1px solid rgba(23,255,63,0.6);
+        box-shadow: 0px 2px 78px -27px rgba(23,255,63,0.74);
+        -webkit-box-shadow: 0px 2px 78px -27px rgba(23,255,63,0.74);
+        -moz-box-shadow: 0px 2px 78px -27px rgba(23,255,63,0.74);
+    }
+
+    button:active {
+        background-color: rgba(23,255,63,0.6);
+    }
+
+
+    #texto {
+        
+        font-size: 20pt;
+    }
+
+    #resp {
+        font-size: 3vw;
+    }
+
+</style>
+<body>
+    <div class="main">
+        <h1>
+            Conversor de bases numéricas :)
+        </h1>
+        <form>
+            <select id="select">
+                <option value="">escolha um</option>
+                <option value="16">hexadecimal</option>
+                <option value="2">binário</option>
+            </select>
+        </form>
+        <p id="texto"></p> <!-- aviso que não funciona-->
+        <h2>
+            informe um valor
+        </h2>
+        <div class="center">
+            <input type="number" id="number">
+        </div>
+        <br>
+        <br>
+        <div class="flex">
+            <button id="calcular">
+                Calcular
+            </button>
+            <button id="limpar">
+                limpar
+            </button>
+            
+            </div>
+            <strong>
+                <h1 id="resp"></h1> 
+            </strong>
+        </div>
+</body>
+<script>
+    let select = window.document.getElementById('select');
+    let numero = window.document.getElementById('number').value;
+    let texto = window.document.getElementById('texto');
+    let calcularButton = window.document.getElementById('calcular');
+    let limparButton = window.document.getElementById('limpar');
+    let resp = window.document.getElementById('resp');
+
+    select.addEventListener('change', function () {
+        console.log(select.value);
+        if (select.value === "") {
+            texto.innerHTML = "Por favor, selecione alguma opção";
+            alert('você deve selecionar alguma opção !');
+        } else {
+            texto.innerHTML = "";
+        }
+    });
+
+    calcularButton.addEventListener('click', function () {
+    let numero = document.getElementById('number').value;
+    let selectValue = select.value;
+    
+        if (selectValue === "16") {
+            let hexadecimalValue = Number(numero).toString(16);
+            resp.innerHTML = "Resultado em hexadecimal de " + numero + " é " + hexadecimalValue;
+            console.log(hexadecimalValue);
+        } else if (selectValue === "2") {
+            let binarioValue = Number(numero).toString(2); 
+            resp.innerHTML = "Resultado em binário de " + numero + " é " + binarioValue;
+            console.log(binarioValue);
+        } else {
+            texto.innerHTML = "Por favor, selecione uma opção válida.";
+        }
+    });
+
+    limparButton.addEventListener('click', function () {
+        resp.innerHTML = "";
+        console.log('resposta limpa');
+    });
+
+
+</script>
+</html>
